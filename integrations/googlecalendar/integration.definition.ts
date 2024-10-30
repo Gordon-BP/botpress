@@ -14,15 +14,17 @@ import {
   updateEventOutputSchema,
   deleteEventInputSchema,
   deleteEventOutputSchema,
+  sendInvitationInputSchema,
+  sendInvitationOutputSchema,
 } from './src/misc/custom-schemas'
-import { updateEventUi, deleteEventUi, createEventUi } from './src/misc/custom-uis'
+import { updateEventUi, deleteEventUi, createEventUi, sendInvitationUi } from './src/misc/custom-uis'
 
 export default new IntegrationDefinition({
   name: INTEGRATION_NAME,
-  version: '0.5.0',
+  version: '0.5.2',
   description:
-    "Elevate your chatbot's capabilities with the Botpress integration for Google Calendar. Seamlessly sync your chatbot with Google Calendar to effortlessly manage events, appointments, and schedules",
-  title: 'Google Calendar',
+    "Now with more capabilities! Elevate your chatbot's capabilities with the Botpress integration for Google Calendar. Seamlessly sync your chatbot with Google Calendar to effortlessly manage events, appointments, and schedules",
+  title: 'Google Calendar - Hanakano Edition',
   readme: 'hub.md',
   icon: 'icon.svg',
   configuration: {
@@ -39,7 +41,8 @@ export default new IntegrationDefinition({
         .string()
         .email()
         .describe('The client email from the Google service account. You can get it from the downloaded JSON file.'),
-    }),
+      subject: z.string().email().describe("The non-service account user whom invitation emails are sent out as")
+    })
   },
   entities: {
     event: {
@@ -109,6 +112,16 @@ export default new IntegrationDefinition({
       },
       output: {
         schema: deleteEventOutputSchema,
+      },
+    },
+    sendInvitation: {
+      title: "Send Invitations",
+      input: {
+        schema: sendInvitationInputSchema,
+        ui: sendInvitationUi
+      },
+      output: {
+        schema: sendInvitationOutputSchema
       },
     },
   },

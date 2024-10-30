@@ -13,7 +13,12 @@ To set up the Google Calendar Integration for your Botpress bot, follow these st
    - Create a service account for your project.
    - Create and download the service account's private key JSON file.
 
-2. **Botpress Configuration**:
+2. **Google Workspace Setup**:
+   - Give the service account domain authority
+   - Assign it scopes for Google Calendar and Gmail
+   - Create and share a Google Calendar with the service account
+
+3. **Botpress Configuration**:
    - Install the Google Calendar Integration in your Botpress bot.
    - Open the JSON file downloaded earlier and copy paste the `private_key` and `client_email ` values in the configuration fields.
    - Go to your Google Calendar and copy the calendar ID from the calendar url.
@@ -28,3 +33,7 @@ Once the Google Calendar Integration is configured, you can use it to manage cal
 - Update or delete events based on user requests.
 
 The integration provides powerful capabilities to enhance your bot's scheduling and event management functionalities.
+
+## Contact
+Email gordy@hanakano.com with questions.
+

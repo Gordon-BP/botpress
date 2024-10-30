@@ -1,4 +1,5 @@
 import sync from './sync'
+import { sendInvitation } from './sync/send-invitation'
 import * as bp from '.botpress'
 
 export const createEvent: bp.IntegrationProps['actions']['createEvent'] = async (props) => {

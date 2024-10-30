@@ -15,14 +15,16 @@
   "dependencies": {
     "@botpress/client": "workspace:*",
     "@botpress/sdk": "workspace:*",
+    "@types/uuid": "^9.0.1",
     "google-auth-library": "^9.0.0",
-    "googleapis": "^126.0.1"
+    "googleapis": "^126.0.1",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@botpress/cli": "workspace:*",
+    "@botpress/common": "workspace:*",
     "@types/node": "^18.11.17",
     "googleapis-common": "^7.0.1",
-    "typescript": "^4.9.4",
-    "@botpress/common": "workspace:*"
+    "typescript": "^4.9.4"
   }
 }

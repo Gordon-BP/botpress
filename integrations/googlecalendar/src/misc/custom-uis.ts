@@ -11,8 +11,8 @@ type IsEmptyObject<T> = keyof T extends never ? true : false
 type UiOf<TSchema extends z.AnyZodObject> = IsEmptyObject<z.infer<TSchema>> extends true
   ? Record<string, never>
   : {
-      [K in keyof z.infer<TSchema>]: Partial<SchemaOptions<z.infer<TSchema>[K]>>
-    }
+    [K in keyof z.infer<TSchema>]: Partial<SchemaOptions<z.infer<TSchema>[K]>>
+  }
 
 export const createEventUi = {
   startDateTime: {
@@ -80,3 +80,22 @@ export const listEventsUi = {
     title: 'Number of events to retrieve',
   },
 } satisfies UiOf<typeof schemas.listEventsInputSchema>
+
+export const sendInvitationUi = {
+  to: {
+    title: "Invitation recipients",
+    examples: [['user1@email.com'], ['user1@email.com', 'user2@email.com']],
+  },
+  subject: {
+    title: "Invitation subject line",
+    examples: ["New appointment scheduled"],
+  },
+  body: {
+    title: "The body of the email message",
+    examples: ["A new meeting has been scheduled for next Tuesday. See you there!"],
+  },
+  event: {
+    title: "The calendar event object this invitation is linked to"
+  }
+
+} satisfies UiOf<typeof schemas.sendInvitationInputSchema>

@@ -26,6 +26,10 @@ export const eventCreate = (async (props: EventCreateProps) => {
     const { calendar } = await getClient(ctx.configuration)
     const response = await calendar.events.insert({
       calendarId: ctx.configuration.calendarId,
+      sendNotifications: true,
+      sendUpdates: input.sendUpdates,
+      // Required to enable requesting a Google meet link
+      conferenceDataVersion: 1,
       requestBody: {
         summary: item.summary,
         description: item.description,
@@ -40,8 +44,10 @@ export const eventCreate = (async (props: EventCreateProps) => {
         },
         attendees: input.item.attendees,
         conferenceData: input.item.conferenceData,
+        guestsCanModify: false, // Do not allow guests to modify the event
+        guestsCanInviteOthers: true, // Allow guests to invite others
+        guestsCanSeeOtherGuests: true // Optional, allow guests to see each other
       },
-      sendUpdates: input.sendUpdates,
     })
     return {
       item: mapEvent(response.data),

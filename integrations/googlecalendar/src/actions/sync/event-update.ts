@@ -9,6 +9,10 @@ export const eventUpdate: bp.IntegrationProps['actions']['eventUpdate'] = async 
     const { calendar } = await getClient(ctx.configuration)
 
     const { data } = await calendar.events.patch({
+      sendNotifications: true,
+      sendUpdates: 'all',
+      // Required to enable requesting a Google meet link
+      conferenceDataVersion: 1,
       calendarId: ctx.configuration.calendarId,
       eventId: input.id,
       requestBody: {

@@ -23,3 +23,5 @@ export const parseError = (error: any): RuntimeError => {
 
   return new RuntimeError(error?.message)
 }
+
+

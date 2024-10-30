@@ -12,6 +12,7 @@ export async function getClient(config: Config) {
     email: config.clientEmail,
     key: config.privateKey.replace(/\\n/g, '\n'),
     scopes: ['https://www.googleapis.com/auth/calendar'],
+    subject: "gordy@hanakano.com"
   })
   const calendar = google.calendar({ version: 'v3', auth })
   await auth.authorize()
@@ -20,3 +21,22 @@ export async function getClient(config: Config) {
     calendar,
   }
 }
+export async function getMailClient(config: Config) {
+  const auth = new JWT({
+    email: config.clientEmail,
+    key: config.privateKey.replace(/\\n/g, '\n'),
+    scopes: [
+      'https://www.googleapis.com/auth/gmail.send',
+      'https://www.googleapis.com/auth/gmail.modify',
+      'https://www.googleapis.com/auth/gmail.compose'
+    ],
+    subject: "gordy@hanakano.com"
+  })
+  const gmail = google.gmail({ version: 'v1', auth })
+  await auth.authorize()
+  return {
+    auth,
+    gmail,
+  }
+}
+
