@@ -33,10 +33,19 @@ export default new IntegrationDefinition({
           query: z.record(z.any()),
           path: z.string(),
 <<<<<<< HEAD
+<<<<<<< HEAD
           headers: z.record(z.union([z.string(), z.string().array()])),
 =======
           headers: z.record(z.any()),
 >>>>>>> 3f151dc14 (added headers to created event)
+=======
+          headers: z.record(
+            z.union([
+              z.string(),
+              z.string().array(),
+            ])
+          ),
+>>>>>>> 63ce4166d (updating header typing, minor version bump)
           method: z.enum(['GET', 'POST']),
         })
         .passthrough(),
