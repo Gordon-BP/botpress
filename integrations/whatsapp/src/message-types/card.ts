@@ -130,6 +130,15 @@ function* generateCTAUrlInteractiveMessages(card: Card, actions: ActionURL[]) {
   for (const action of actions) {
     if (actionNumber === 1) {
       // First CTA URL button will be in a WhatsApp card
+      if (card.title?.trim().startsWith('{')) {
+        // If we pass an object into the header, like for an image, parse it
+        try {
+          card.title = JSON.parse(card.title)
+        } catch {
+          continue
+        }
+      }
+      console.debug(card.title)
       yield new Interactive(
         new InteractiveCtaUrl(action.value, action.label),
         body.create(card.subtitle ?? action.value),
