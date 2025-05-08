@@ -1,7 +1,7 @@
 import { Conversation } from '@botpress/client'
 import { z, RuntimeError } from '@botpress/sdk'
-import WhatsAppAPI from 'whatsapp-api-js'
-import { AtLeastOne } from 'whatsapp-api-js/lib/types/utils'
+import { WhatsAppAPI } from 'whatsapp-api-js'
+import { AtLeastOne } from 'whatsapp-api-js/lib/utils'
 import { BodyComponent, BodyParameter, Language, Template } from 'whatsapp-api-js/messages'
 import { ServerErrorResponse, ServerMessageResponse } from 'whatsapp-api-js/types'
 import { getAccessToken, getPhoneNumberId } from './misc/whatsapp'
@@ -28,7 +28,7 @@ export async function startConversation(
   }
 ): Promise<Pick<Conversation, 'id'>> {
   const { channel, phoneNumberId, userPhone, templateName, templateVariablesJson } = params
-  const templateLanguage = params.templateLanguage || 'en_US'
+  const templateLanguage = params.templateLanguage || 'en'
 
   const { client, ctx, logger } = dependencies
 
