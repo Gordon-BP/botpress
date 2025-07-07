@@ -1,0 +1,23 @@
+{
+  "name": "@hanakano/mistral",
+  "scripts": {
+    "build": "bp add -y && bp build",
+    "check:type": "tsc --noEmit",
+    "check:bplint": "bp lint"
+  },
+  "private": true,
+  "dependencies": {
+    "@botpress/client": "workspace:*",
+    "@botpress/common": "workspace:*",
+    "@botpress/sdk": "workspace:*",
+    "@mistralai/mistralai": "^1.7.3",
+    "zod": "^3.25.75"
+  },
+  "devDependencies": {
+    "@botpress/cli": "workspace:*",
+    "@botpresshub/llm": "workspace:*"
+  },
+  "bpDependencies": {
+    "llm": "../../interfaces/llm"
+  }
+}
