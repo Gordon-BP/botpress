@@ -2,11 +2,15 @@
   "name": "mistral",
   "integrationName": "hanakano/mistral",
   "dependencies": {
+    "@botpress/common": "../../packages/common",
     "@botpress/sdk": "^4.15.2",
     "@bpinternal/zui": "^1.0.1",
-    "@mistralai/mistralai": "^1.7.5"
-  },"devDependencies": {
-    "@botpress/cli": "^4.14.6"
+    "@mistralai/mistralai": "^1.7.5",
+    "crypto": "^1.0.1"
+  },
+  "devDependencies": {
+    "@botpress/cli": "^4.16.1",
+    "@botpresshub/llm": "../../interfaces/llm"
   },
   "bpDependencies": {
     "llm": "../../interfaces/llm"

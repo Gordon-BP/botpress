@@ -1,25 +1,24 @@
-/* bplint-disable */
 import { IntegrationDefinition, z } from '@botpress/sdk'
-// import { ModelId } from 'src/schemas'
-import * as llm from "@botpresshub/llm"
+import { ModelId } from 'src/schemas'
+import llm from "./bp_modules/llm"
 
 export default new IntegrationDefinition({
-	name: 'google-ai',
-	title: 'Google AI',
-	description: 'Gain access to Gemini models for content generation, chat responses, and advanced language tasks.',
-	version: '6.0.3',
+	name: 'mistral-ai',
+	title: 'Mistral AI',
+	description: 'Gain access to Mistral models for content generation, chat responses, and advanced language tasks',
+	version: '0.0.2',
 	readme: 'hub.md',
 	icon: 'icon.svg',
 	entities: {
 		modelRef: {
 			schema: z.object({
-				id: z.string(),// ModelId,
+				id: ModelId,
 			}),
 		},
 	},
-	secrets: {
-		GOOGLE_AI_API_KEY: {
-			description: 'Google AI API key',
-		},
+	configuration: {
+		schema: z.object({
+			MISTRAL_API_KEY: z.string().title("Mistral API Key").describe("API key for Mistral La Platforme account"),
+		}),
 	},
 }).extend(llm, ({ entities: { modelRef } }) => ({ entities: { modelRef } }))
