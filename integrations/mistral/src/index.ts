@@ -4,8 +4,6 @@ import { generateContent } from './actions/generate-content'
 import { ModelId } from 'src/schemas'
 import * as bp from ".botpress"
 
-const mistralAIClient = new Mistral({ apiKey: bp.configuration.MISTRAL_API_KEY })
-
 const DEFAULT_LANGUAGE_MODEL_ID: ModelId = 'mistral-medium-2505'
 
 const languageModels: Record<ModelId, llm.ModelDetails> = {
@@ -100,7 +98,8 @@ export default new bp.Integration({
 	register: async () => { },
 	unregister: async () => { },
 	actions: {
-		generateContent: async ({ input, logger, metadata }) => {
+		generateContent: async ({ input, logger, metadata, ctx }) => {
+			const mistralAIClient = new Mistral({ apiKey: ctx.configuration.MISTRAL_API_KEY })
 			const output = await generateContent(<llm.GenerateContentInput>input, mistralAIClient, logger, {
 				models: languageModels,
 				defaultModel: DEFAULT_LANGUAGE_MODEL_ID,

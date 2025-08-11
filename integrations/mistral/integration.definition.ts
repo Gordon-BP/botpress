@@ -6,7 +6,7 @@ export default new IntegrationDefinition({
 	name: 'mistral-ai',
 	title: 'Mistral AI',
 	description: 'Gain access to Mistral models for content generation, chat responses, and advanced language tasks',
-	version: '0.0.5',
+	version: '0.0.6',
 	readme: 'hub.md',
 	icon: 'icon.svg',
 	entities: {
