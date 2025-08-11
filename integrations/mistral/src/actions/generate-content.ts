@@ -46,8 +46,8 @@ export async function generateContent(
 
 	/* ── usage / billing ── */
 	// Setting to zero so that we don't incur billing charges on Botpress
-	const inTok = 0 //resp.usage?.promptTokens ?? 0
-	const outTok = 0 //resp.usage?.completionTokens ?? 0
+	const inTok = resp.usage?.promptTokens ?? 0
+	const outTok = resp.usage?.completionTokens ?? 0
 	const inCost = calcCost(model.input.costPer1MTokens, inTok)
 	const outCost = calcCost(model.output.costPer1MTokens, outTok)
 
@@ -59,8 +59,8 @@ export async function generateContent(
 		provider: 'mistral-ai',
 		model: modelId,
 		choices,
-		botpress: { cost: inCost + outCost },
-		usage: { inputTokens: inTok, inputCost: inCost, outputTokens: outTok, outputCost: outCost },
+		botpress: { cost: 0 },//{ cost: inCost + outCost },
+		usage: { inputTokens: inTok, inputCost: 0, outputTokens: outTok, outputCost: 0 },		//{ inputTokens: inTok, inputCost: inCost, outputTokens: outTok, outputCost: outCost },
 	}
 	if (input.debug) logger.forBot().info('Action output:\n' + JSON.stringify(out, null, 2))
 	return out
