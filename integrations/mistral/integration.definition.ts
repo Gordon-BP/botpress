@@ -6,7 +6,7 @@ export default new IntegrationDefinition({
 	name: 'mistral-ai',
 	title: 'Mistral AI',
 	description: 'Gain access to Mistral models for content generation, chat responses, and advanced language tasks',
-	version: '0.0.4',
+	version: '0.0.5',
 	readme: 'hub.md',
 	icon: 'icon.svg',
 	entities: {
@@ -21,4 +21,9 @@ export default new IntegrationDefinition({
 			MISTRAL_API_KEY: z.string().title("Mistral API Key").describe("API key for Mistral La Platforme account"),
 		}),
 	},
-}).extend(llm, ({ entities: { modelRef } }) => ({ entities: { modelRef } }))
+}).extend(llm, ({ entities: { modelRef } }) => ({
+	entities: { modelRef },
+	actions: {
+		generateContent: { billable: false }
+	}
+}))
