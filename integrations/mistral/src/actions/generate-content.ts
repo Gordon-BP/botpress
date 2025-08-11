@@ -45,8 +45,9 @@ export async function generateContent(
 	}
 
 	/* ── usage / billing ── */
-	const inTok = resp.usage?.promptTokens ?? 0
-	const outTok = resp.usage?.completionTokens ?? 0
+	// Setting to zero so that we don't incur billing charges on Botpress
+	const inTok = 0 //resp.usage?.promptTokens ?? 0
+	const outTok = 0 //resp.usage?.completionTokens ?? 0
 	const inCost = calcCost(model.input.costPer1MTokens, inTok)
 	const outCost = calcCost(model.output.costPer1MTokens, outTok)
 
